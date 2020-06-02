@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display a data frame</title>
+</head>
+    <form action = "http://localhost:5000/display_file" method = "POST"
+          enctype = "multipart/form-data">
+
+        <input type = "submit" value="upload to database"/>
+
+        {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+        {% endfor %}
+
+      </form>
+</html>
