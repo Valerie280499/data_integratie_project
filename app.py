@@ -14,9 +14,8 @@ def upload_image():
 def check_ext_of_input_file():
     if request.method == 'POST':
         f = request.files['file']
-        check = check_ext(f)
 
-        if check:
+        if check_ext(f):
             save_input_file(f)
             data_frame = vcf_to_dataframe(f)
 
@@ -25,6 +24,15 @@ def check_ext_of_input_file():
                                    titles=data_frame.columns.values)
         else:
             return render_template("error/file_not_found_error.html")
+
+
+@app.route('/update_database', methods=['GET', 'POST'])
+def upload_to_database():
+    f = open('input_file').readlines()
+    for line in f:
+        print(line)
+
+    return 'hello world'
 
 
 @app.route('/hey')

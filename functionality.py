@@ -10,10 +10,10 @@ def check_ext(f):
 
 
 def save_input_file(f):
-    f.save(secure_filename(f.filename))
+    f.save(secure_filename('input_file'))
 
 
 def vcf_to_dataframe(f):
-    return allel.vcf_to_dataframe(f.filename, fields='*', alt_number=2)
+    return allel.vcf_to_dataframe('input_file', fields='*', alt_number=2)
 
 
