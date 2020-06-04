@@ -26,3 +26,4 @@ def get_everything_from_database(cursor):
 
     for row in cursor:
         return row
+
