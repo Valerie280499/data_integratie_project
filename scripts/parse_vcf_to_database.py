@@ -86,3 +86,7 @@ def close_connection(connection):
     :param connection: A object containing the connection to the database.
     """
     connection.close()
+
+    
+if __name__ == '__main__':
+    process_file(vcf_file)
