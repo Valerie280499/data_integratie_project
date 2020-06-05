@@ -3,4 +3,4 @@ Werkzeug~=1.0.0
 scikit-allel==1.2.1
 frameup==0.1.2
 hail~=0.2.41
-pyodbc
+mysql
