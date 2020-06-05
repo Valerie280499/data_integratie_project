@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
-from functionality import check_ext, save_input_file, vcf_to_dataframe
+from scripts.functionality import check_ext, save_input_file, vcf_to_dataframe
+from scripts.parse_vcf_to_database import process_file
 
 app = Flask(__name__)
 app.secret_key = 'many random bytes'
@@ -13,11 +14,11 @@ def upload_image():
 @app.route('/upload_file', methods=['GET', 'POST'])
 def check_ext_of_input_file():
     if request.method == 'POST':
-        f = request.files['file']
+        vcf_file = request.files['file']
 
-        if check_ext(f):
-            save_input_file(f)
-            data_frame = vcf_to_dataframe(f)
+        if check_ext(vcf_file):
+            save_input_file(vcf_file)
+            data_frame = vcf_to_dataframe(vcf_file)
 
             return render_template('public/display_dataframe.html',
                                    tables=[data_frame.to_html(classes='data')],
@@ -28,16 +29,10 @@ def check_ext_of_input_file():
 
 @app.route('/update_database', methods=['GET', 'POST'])
 def upload_to_database():
-    f = open('input_file').readlines()
-    for line in f:
-        print(line)
+    vcf_file = open('input_file').readlines()
+    process_file(vcf_file)
 
-    return 'hello world'
-
-
-@app.route('/hey')
-def hello_world():
-    return 'Hello World!'
+    return "file path was given to 'process_file'"
 
 
 if __name__ == '__main__':
