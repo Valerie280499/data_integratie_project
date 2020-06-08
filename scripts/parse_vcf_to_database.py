@@ -4,24 +4,28 @@ Author: Anne Manders
 Date: 3-06-2020
 Version: 0.1
 """
-
-import vcf
+from Database.connect_to_mysql_database import DatabaseInterface
+import logging
 import mysql.connector as connector
+
+logger = logging.getLogger('database connector')
+logging.info('Start connecting...')
+logger.setLevel(logging.DEBUG)
 
 # TODO vcf file will be retrieved from the webpage, in the future
 vcf_file = '/home/anne/Desktop/Data_integratie/gnomad.exomes.r2.1.1.sites.Y.vcf'
 
 
-def process_file(vcf_file):
+def process_file(vcf_reader):
     """Accepts a file path to a VCF file and saved all the variants that qualify in a database.
 
     :param vcf_file. A string containing the path to a VCF file, obtained from the webpage.
 
     :return: None
     """
-    vcf_reader = vcf.Reader(open(vcf_file, 'r'))
-    conn = create_connection()
-    cursor = conn.cursor()
+
+    data_interface = DatabaseInterface()
+    data_interface.create_connection()
 
     for record in vcf_reader:
         try:
@@ -40,53 +44,33 @@ def process_file(vcf_file):
 
             if cancer_alt_frequency > 0:
                 values = (variant_id, chromosome, position, reference, alternative, variant_type, cancer_alt_frequency)
-
                 query = "INSERT INTO variant VALUES {}".format(values)
-
-                cursor.execute(query)
+                data_interface.execute_query(query)
+            else:
+                pass
 
         except KeyError:
-            # In case one of the attributes is missing
+            # error_message = "One of the attributes is missing"
             pass
 
         except connector.errors.ProgrammingError:
-            # In case one of the attributes is None
+            # error_message = "One of the attributes is None"
             pass
 
         except connector.errors.IntegrityError:
-            # In case the database has trailing data
+            # error_message = "The database has trailing data"
             pass
 
         except ZeroDivisionError:
-            # In case variants have a total allele count of zero
+            # error_message = "The variants have a total allele count of zero"
             pass
 
-    cursor.close()
-    conn.commit()
-    close_connection(conn)
+        except Exception as e:
+            logging.error(e)
+
+    data_interface.commit_query()
+    data_interface.close_connection()
 
 
-def create_connection():
-    """Makes a connection to the database and returns the created connection. # cursor
-
-    :return A connection to the database.
-    """
-    connection = connector.connect(host='127.0.0.1', db='data_integratie', user='root', password='####')
-    # host is 'localhost'/'127.0.0.1' when running the script locally
-    # db is the name of the database (I named it data_integratie when creating it)
-    # user is i.a.c. 'root' when running the script locally, how this will work in Docker, I'm not yet sure
-    # password is the password for your mysql account
-
-    return connection
-
-
-def close_connection(connection):
-    """Closes the established connection to the database.
-
-    :param connection: A object containing the connection to the database.
-    """
-    connection.close()
-
-    
-if __name__ == '__main__':
-    process_file(vcf_file)
+# if __name__ == '__main__':
+#     process_file(vcf_file)
