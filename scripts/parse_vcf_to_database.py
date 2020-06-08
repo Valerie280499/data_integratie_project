@@ -9,7 +9,7 @@ import vcf
 import mysql.connector as connector
 
 # TODO vcf file will be retrieved from the webpage, in the future
-vcf_file = '/home/anne/Desktop/Data_integratie/gnomad.exomes.r2.1.1.sites.Y.vcf'
+# vcf_file = '/home/anne/Desktop/Data_integratie/gnomad.exomes.r2.1.1.sites.Y.vcf'
 
 
 def process_file(vcf_file):
@@ -71,7 +71,7 @@ def create_connection():
 
     :return A connection to the database.
     """
-    connection = connector.connect(host='127.0.0.1', db='data_integratie', user='root', password='####')
+    connection = connector.connect(host='database', db='data_integratie', user='root', password='Annesql', port='3306')
     # host is 'localhost'/'127.0.0.1' when running the script locally
     # db is the name of the database (I named it data_integratie when creating it)
     # user is i.a.c. 'root' when running the script locally, how this will work in Docker, I'm not yet sure
@@ -88,5 +88,5 @@ def close_connection(connection):
     connection.close()
 
     
-if __name__ == '__main__':
-    process_file(vcf_file)
+# if __name__ == '__main__':
+#     process_file(vcf_file)

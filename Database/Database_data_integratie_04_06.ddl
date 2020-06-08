@@ -6,17 +6,16 @@
 
 
 CREATE TABLE variant (
-    variant_id            VARCHAR(10) NOT NULL,
+    variant_id            VARCHAR(20) NOT NULL,
     chromosome             VARCHAR(10),
     position               INTEGER,
     reference              VARCHAR(10),
     alternative            VARCHAR(10),
     variant_type			VARCHAR(10),
     cancer_alt_allele_frequency			FLOAT
-    -- alt_allele_frequency   FLOAT
 );
 
-ALTER TABLE variant ADD CONSTRAINT variant_pk PRIMARY KEY ( mutation_id );
+ALTER TABLE variant ADD CONSTRAINT variant_pk PRIMARY KEY ( variant_id );
 
 
 
