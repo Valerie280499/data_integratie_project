@@ -1,17 +1,18 @@
 import os
-import pandas
-from scripts.connect_to_mysql_database import DatabaseInterface
+import allel
+from werkzeug.utils import secure_filename
 
 
-def check_extension_of_input_file(vcf_file):
+def check_ext(vcf_file):
     if os.path.splitext(vcf_file.filename)[1].lower() == '.vcf':
         return True
 
 
-def parse_all_data_from_database_to_data_frame():
-    db_interface = DatabaseInterface()
-    db_interface.create_connection()
-    conn = db_interface.get_connection()
+def save_input_file(vcf_file):
+    vcf_file.save(secure_filename('input_file'))
 
-    data_frame = pandas.read_sql("SELECT * FROM variant;", conn)
-    return data_frame
+
+def vcf_to_dataframe(vcf_file):
+    return allel.vcf_to_dataframe('input_file', fields='*', alt_number=2)
+
+

@@ -4,9 +4,9 @@
 --   type:      Oracle Database 11g
 
 
-;
+
 CREATE TABLE variant (
-    variant_id            VARCHAR(20) NOT NULL,
+    variant_id            VARCHAR(10) NOT NULL,
     chromosome             VARCHAR(10),
     position               INTEGER,
     reference              VARCHAR(10),
@@ -16,7 +16,7 @@ CREATE TABLE variant (
     -- alt_allele_frequency   FLOAT
 );
 
-ALTER TABLE variant ADD CONSTRAINT variant_pk PRIMARY KEY ( variant_id );
+ALTER TABLE variant ADD CONSTRAINT variant_pk PRIMARY KEY ( mutation_id );
 
 
 
