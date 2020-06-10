@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Query database</title>
+</head>
+<body>
+<div class="wrapper">
+  <div class="box"></div>
+    <h1>
+        {% if text %}
+        {{ text }}
+        {% endif %}
+    </h1>
+
+    <form action = "http://localhost:5000/get_all_data" method = "POST"
+          enctype = "multipart/form-data">
+        <input type = "submit" value="Show me everything in the database" />
+    </form>
+
+</div>
+</body>
+</html>
+
+
