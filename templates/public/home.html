@@ -5,10 +5,15 @@
         <title>Upload a VCF file</title>
     </head>
    <body>
-      <form action = "http://localhost:5000/update_database" method = "POST"
+      <form action = "http://localhost:5000/upload_file" method = "POST"
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit" value="upload to database" />
+      </form>
+
+      <form action = "http://localhost:5000/get_all_data" method = "POST"
+            enctype = "multipart/form-data">
+          <input type = "submit" value="Show me everything in the database" />
       </form>
    </body>
 </html>
