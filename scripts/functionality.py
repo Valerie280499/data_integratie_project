@@ -12,7 +12,7 @@ def save_input_file(vcf_file):
     vcf_file.save(secure_filename('input_file'))
 
 
-# def vcf_to_dataframe(vcf_file):
-#     return allel.vcf_to_dataframe('input_file', fields='*', alt_number=2)
+def vcf_to_dataframe(vcf_file):
+    return allel.vcf_to_dataframe('input_file', fields='*', alt_number=2)
 
 

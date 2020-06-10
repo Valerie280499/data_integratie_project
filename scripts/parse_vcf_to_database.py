@@ -8,9 +8,6 @@ Version: 0.1
 import vcf
 import mysql.connector as connector
 
-# TODO vcf file will be retrieved from the webpage, in the future
-# vcf_file = '/home/anne/Desktop/Data_integratie/gnomad.exomes.r2.1.1.sites.Y.vcf'
-
 
 def process_file(vcf_file):
     """Accepts a file path to a VCF file and saved all the variants that qualify in a database.

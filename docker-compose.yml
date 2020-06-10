@@ -6,7 +6,7 @@ services:
     links:
       - database
     ports:
-      - "8083:3305"
+      - "8083:5000"
   database:
     image: mysql:latest
     ports:
