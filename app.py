@@ -1,9 +1,9 @@
 import vcf
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request
+from scripts.extract_data_from_database import check_if_database_is_not_empty, extract_all_data_from_database
 from scripts.functionality import check_extension_of_input_file, parse_all_data_from_database_to_data_frame
 from scripts.parse_vcf_content_to_database import upload_vcf_content
-from scripts.extract_data_from_database import check_if_database_is_not_empty, extract_all_data_from_database
 
 app = Flask(__name__)
 app.secret_key = 'many random bytes'
@@ -51,4 +51,4 @@ def get_all_data_from_database():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, host='0.0.0.0')
