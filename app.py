@@ -1,8 +1,8 @@
+import os
 import vcf
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request
 from scripts.extract_data_from_database import check_if_database_is_not_empty, extract_all_data_from_database
-from scripts.functionality import check_extension_of_input_file, parse_all_data_from_database_to_data_frame
 from scripts.parse_vcf_content_to_database import upload_vcf_content
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def upload_input_file_to_database():
         vcf_file.save(secure_filename(vcf_file.filename))
 
         try:
-            if check_extension_of_input_file(vcf_file):
+            if os.path.splitext(vcf_file.filename)[1].lower() == '.vcf':
                 if upload_vcf_content(vcf_file):
                     return render_template("public/database_has_been_updated.html", text="Database has been updated")
                 else:
