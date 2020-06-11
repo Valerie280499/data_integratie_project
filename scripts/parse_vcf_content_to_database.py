@@ -1,6 +1,6 @@
 """
 Description: Script to parse a VCF file and store selected variants in a database.
-Author: Anne Manders
+Author: Anne Manders and Valerie Verhalle
 Date: 3-06-2020
 Version: 0.4
 """
@@ -92,5 +92,5 @@ def upload_vcf_content(vcf_file):
     if a_query_was_committed:
         return True
     else:
-        logger.error("no data was commited to the database because the input did not pass the criteria")
+        logger.error("no data was committed to the database because the input did not pass the criteria")
         return False

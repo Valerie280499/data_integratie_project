@@ -1,4 +1,7 @@
--- Script that initializes the database upon building the Docker container
+-- Description: script that initializes the database upon building the Docker container
+-- Author: Anne Manders
+-- Version: 3
+-- Date: 10-06-2020
 
 CREATE DATABASE data_integratie;
 

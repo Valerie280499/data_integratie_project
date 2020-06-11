@@ -8,8 +8,7 @@ Version: 8
 import os
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request
-from scripts.extract_data_from_database import check_if_database_is_not_empty, \
-    extract_all_data_from_database
+from scripts.extract_data_from_database import check_if_database_is_not_empty, extract_all_data_from_database
 from scripts.parse_vcf_content_to_database import upload_vcf_content
 
 app = Flask(__name__)
