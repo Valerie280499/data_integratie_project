@@ -20,7 +20,7 @@ class DatabaseInterface:
             self.conn = connector.connect(host='localhost',
                                           db='data_integratie',
                                           user='root',
-                                          password='blaat123')
+                                          password='Annesql')
 
             if self.conn.is_connected():
                 logger.info("create cursor")
