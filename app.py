@@ -1,3 +1,7 @@
+"""
+
+"""
+
 import os
 import vcf
 from werkzeug.utils import secure_filename
@@ -51,4 +55,4 @@ def get_all_data_from_database():
 
 
 if __name__ == '__main__':
-    app.run(port=5000, host='0.0.0.0')
+    app.run(debug=True, port=5000, host='0.0.0.0')
