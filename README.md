@@ -2,7 +2,7 @@
 Authors: Valerie Verhalle and Anne Manders
 
 ### How to run the docker containers:
-Make sure you have the Dockerfile, docker-compose.yml and app.py in the same directory(data_integratie_project) <br/><br/>
+Make sure you have the Dockerfile, docker-compose.yml and app.py in the data_integratie_project directory <br/><br/>
 In the terminal, go to the data_integratie_project directory <br/>
 Then, enter the following commands:<br/>
 ```
@@ -43,6 +43,7 @@ If you need to remake the containers:<br/>
     <br/>Then enter:<br/>
     ```sudo docker system prune -a```
    <br/> Then enter yes to let the pruning continue (!!!Be careful! This will remove ALL containers and images!!!) <br/>
+   Then, make sure any files not essential for running the webapp are removed from the data_integratie_project directory. *Keep in mind ALL files in the directory will be copied into the app container, so make sure only essential files are present to save storage space as well as speed up the building process.*<br/>
     To restart the process of creating the containers, enter:<br/>
     ```sudo docker-compose up```
   
