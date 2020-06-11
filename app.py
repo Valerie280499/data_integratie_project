@@ -1,5 +1,4 @@
 import os
-import vcf
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request
 from scripts.extract_data_from_database import check_if_database_is_not_empty, extract_all_data_from_database
