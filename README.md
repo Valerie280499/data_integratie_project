@@ -12,7 +12,7 @@ sudo docker-compose up
 <br/>This should create the containers. They take up about 2.5 GB in storage space, so keep that in mind. <br/><br/>
 
 Enter the database container by entering:<br/>
-```mysql --host=127.0.0.1 --port=32000 -u root -p```<br/>
+```mysql --port=32000 -u root -p```<br/>
 Then enter the password indicated in the YML file. <br/>
 You should be located at the sql prompt in the database container. Verify this by entering:<br/>
 ```SHOW DATABASES;```<br/>
@@ -37,8 +37,8 @@ If you need to remake the containers:<br/>
     ```
     <br/>Twice, once for each container enter:<br/>
     ```
-    sudo docker stop <CONTAINER ID>
-    sudo docker rm <CONTAINER ID>
+    sudo docker stop <CONTAINER ID/NAME>
+    sudo docker rm <CONTAINER ID/NAME>
     ```
     <br/>Then enter:<br/>
     ```sudo docker system prune -a```
@@ -48,5 +48,23 @@ If you need to remake the containers:<br/>
   
 <br/>I did it this way because my computer couldn't handle 'docker-compose up --build', seeing as it generated those 2.5 GB all over again. But, if you have the processing power, you can also, instead of the manual removal, enter after 'docker-compose down':<br/>
   ```sudo docker-compose up --build```
-<br/>
+<br/><br/>
+To end the docker-compose up in the terminal, enter 'Ctr + c'. This closes the containers while saving their contents.<br/><br/>
+To restart the containers, enter for each container:<br/>
+```sudo docker start <CONTAINTER ID/NAME>```
+<br/><br/>
+DATABASE<br/>
+Make a connection(enter the mysql prompt) to the database by entering the command:<br/>
+```mysql --port=32000 -u root -p```<br/>
+Then, inspect the database as you wish, for example by taking a look at the entire contents:<br/>
+```
+USE data_integratie_project;
+SELECT * from variant;
+```
+<br/><br/>
+APP<br/>
+Go to a webbrowser and enter the following url:<br/>
+```http://localhost:5000/```<br/>
+It should show you the webpage!
+
 And that should do it! Good luck!
